@@ -1,0 +1,66 @@
+{
+  "version": "2.0.0",
+  "options": {
+    "shell": {
+      "executable": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-Command"
+      ]
+    }
+  },
+  "tasks": [
+    {
+      "label": "Setup: deps (pnpm)",
+      "type": "shell",
+      "command": "pnpm install",
+      "problemMatcher": []
+    },
+    {
+      "label": "Frontend: lint",
+      "type": "shell",
+      "command": "pnpm --dir frontend lint",
+      "problemMatcher": []
+    },
+    {
+      "label": "Frontend: type-check",
+      "type": "shell",
+      "command": "pnpm --dir frontend type-check",
+      "problemMatcher": []
+    },
+    {
+      "label": "Frontend: tests",
+      "type": "shell",
+      "command": "pnpm --dir frontend test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Frontend: build",
+      "type": "shell",
+      "command": "pnpm --dir frontend build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Frontend: format (check)",
+      "type": "shell",
+      "command": "pnpm --dir frontend format",
+      "problemMatcher": []
+    },
+    {
+      "label": "Frontend: format (fix)",
+      "type": "shell",
+      "command": "pnpm --dir frontend format:fix",
+      "problemMatcher": []
+    },
+    {
+      "label": "Verify (lint+type+test+build)",
+      "dependsOn": [
+        "Frontend: lint",
+        "Frontend: type-check",
+        "Frontend: tests",
+        "Frontend: build"
+      ],
+      "dependsOrder": "sequence"
+    }
+  ]
+}
