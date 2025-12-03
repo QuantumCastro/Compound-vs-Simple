@@ -436,26 +436,6 @@ const en: AppDictionary = {
           "Use Lighthouse and WebPageTest to validate Core Web Vitals before shipping a release.",
         ],
       },
-      {
-        id: "references",
-        title: "References and further reading",
-        summary:
-          "Authoritative sources you can cite in documentation or share with learners for deeper dives.",
-        references: [
-          {
-            label: "Investopedia - Simple Interest Overview",
-            url: "https://www.investopedia.com/terms/s/simple_interest.asp",
-          },
-          {
-            label: "Investopedia - Compound Interest Explained",
-            url: "https://www.investopedia.com/terms/c/compoundinterest.asp",
-          },
-          {
-            label: "U.S. SEC - Compound Interest Calculator Guidance",
-            url: "https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator",
-          },
-        ],
-      },
     ],
     progress: {
       loaded: "Loaded {{loaded}} of {{total}} learning sections.",
@@ -765,26 +745,6 @@ const es: AppDictionary = {
           "Bundle inicial de JavaScript ≤ 200 KB gzip. Las gráficas SVG personalizadas ayudan a cumplir el presupuesto.",
           "Todos los controles interactivos soportan navegación con teclado y anuncian cambios mediante atributos aria.",
           "Ejecuta Lighthouse y WebPageTest para validar Core Web Vitals antes de liberar una versión.",
-        ],
-      },
-      {
-        id: "references",
-        title: "Referencias y lecturas recomendadas",
-        summary:
-          "Fuentes confiables que puedes citar en documentación o compartir con estudiantes para profundizar.",
-        references: [
-          {
-            label: "Investopedia - Concepto de interés simple",
-            url: "https://www.investopedia.com/terms/s/simple_interest.asp",
-          },
-          {
-            label: "Investopedia - Interés compuesto explicado",
-            url: "https://www.investopedia.com/terms/c/compoundinterest.asp",
-          },
-          {
-            label: "U.S. SEC - Guía de calculadora de interés compuesto",
-            url: "https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator",
-          },
         ],
       },
     ],

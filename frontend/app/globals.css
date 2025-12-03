@@ -4,34 +4,34 @@
 
 :root {
   color-scheme: dark;
-  --color-background: 13 6 24; /* cuerpo de la página (fondo base) */
-  --color-background-raised: 22 16 42; /* tarjetas y superficies elevadas */
-  --color-background-muted: 35 27 61; /* paneles secundarios o resaltados suaves */
-  --color-text-primary: 244 240 255; /* texto principal (títulos, cifras) */
-  --color-text-secondary: 213 198 255; /* texto secundario (subtítulos, labels) */
-  --color-text-muted: 157 139 201; /* texto auxiliar (ayudas, notas) */
-  --color-accent-simple: 192 132 252; /* color referencia para interés simple */
-  --color-accent-compound: 168 85 247; /* color referencia para interés compuesto y CTA */
-  --color-accent-highlight: 244 114 182; /* acentos/hover de énfasis */
-  --color-accent-danger: 248 113 113; /* errores y mensajes de alerta */
-  --color-border-subtle: 43 31 69; /* bordes suaves y divisores */
-  --color-border-strong: 58 45 93; /* bordes destacados o en foco */
+  --color-background: 5 5 16;
+  --color-background-raised: 11 15 32;
+  --color-background-muted: 16 22 44;
+  --color-text-primary: 226 232 240;
+  --color-text-secondary: 165 180 203;
+  --color-text-muted: 100 116 139;
+  --color-accent-simple: 59 130 246;
+  --color-accent-compound: 239 68 68;
+  --color-accent-highlight: 168 85 247;
+  --color-accent-danger: 248 113 113;
+  --color-border-subtle: 37 56 92;
+  --color-border-strong: 59 130 246;
 }
 
 [data-theme="light"] {
   color-scheme: light;
-  --color-background: 195 215 195; /* fondo base en modo claro */
-  --color-background-raised: 225 255 225; /* tarjetas elevadas claras */
-  --color-background-muted: 195 225 210; /* paneles secundarios claros */
-  --color-text-primary: 32 54 40; /* texto principal modo claro */
-  --color-text-secondary: 62 89 69; /* texto secundario modo claro */
-  --color-text-muted: 96 128 110; /* texto auxiliar modo claro */
-  --color-accent-simple: 63 179 122; /* tono simple en modo claro */
-  --color-accent-compound: 47 158 143; /* tono compuesto y CTA modo claro */
-  --color-accent-highlight: 239 136 96; /* acentos/hover modo claro */
-  --color-accent-danger: 220 68 68; /* errores modo claro */
-  --color-border-subtle: 186 210 197; /* bordes suaves modo claro */
-  --color-border-strong: 0 0 0; /* bordes fuertes modo claro */
+  --color-background: 240 245 255;
+  --color-background-raised: 223 232 255;
+  --color-background-muted: 205 220 255;
+  --color-text-primary: 17 24 39;
+  --color-text-secondary: 55 65 81;
+  --color-text-muted: 100 116 139;
+  --color-accent-simple: 59 130 246;
+  --color-accent-compound: 239 68 68;
+  --color-accent-highlight: 168 85 247;
+  --color-accent-danger: 220 38 38;
+  --color-border-subtle: 199 210 254;
+  --color-border-strong: 59 130 246;
 }
 
 html {
@@ -41,6 +41,11 @@ html {
 body {
   @apply min-h-screen bg-background text-text-primary antialiased transition-colors duration-300;
   background-color: rgb(var(--color-background));
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.07), transparent 26%),
+    radial-gradient(circle at 80% 40%, rgba(239, 68, 68, 0.07), transparent 24%),
+    radial-gradient(circle at 50% 80%, rgba(168, 85, 247, 0.08), transparent 30%);
+  background-attachment: fixed;
 }
 
 a {
@@ -68,6 +73,65 @@ code {
 
 ::selection {
   @apply bg-accent-compound/30 text-text-primary;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(59, 130, 246, 0.35) rgba(15, 23, 42, 0.35);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.35);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.45);
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.35);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(239, 68, 68, 0.7);
+}
+
+.glass-panel {
+  @apply border border-accent-simple/30 bg-gradient-to-br from-background-raised/90 via-background/60 to-background-muted/60 backdrop-blur-md shadow-[0_0_24px_rgba(59,130,246,0.18)];
+}
+
+.neon-divider {
+  @apply h-px w-full bg-gradient-to-r from-transparent via-accent-highlight/50 to-transparent;
+}
+
+.animate-spin-slow {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.35;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.04);
+  }
+  100% {
+    opacity: 0.35;
+    transform: scale(0.96);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

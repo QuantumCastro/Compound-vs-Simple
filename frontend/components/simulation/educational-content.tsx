@@ -25,14 +25,15 @@ export function EducationalContent() {
   return (
     <section
       id="learning"
-      className="flex flex-col gap-3 rounded-2xl border border-border-subtle bg-background-raised/60 p-6 shadow-panel-soft backdrop-blur"
+      className="glass-panel relative flex flex-col gap-3 overflow-hidden rounded-2xl p-6"
     >
+      <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-accent-compound via-accent-highlight to-accent-simple" />
       <header className="flex flex-col gap-2">
         <h2 className="text-xl font-semibold text-text-primary">{dictionary.education.header.title}</h2>
         <p className="text-sm text-text-muted">{dictionary.education.header.subtitle}</p>
       </header>
 
-      <div className="flex max-h-[420px] flex-col gap-6 overflow-y-auto pr-1">
+      <div className="custom-scrollbar flex max-h-[420px] flex-col gap-6 overflow-y-auto pr-1">
         {sections.map((section) => (
           <EducationSection key={section.id} section={section} />
         ))}
@@ -42,7 +43,7 @@ export function EducationalContent() {
 }
 function EducationSection({ section }: { section: EducationSectionContent }) {
   return (
-    <article className="rounded-xl border border-border-subtle bg-background-muted/40 p-5">
+    <article className="rounded-xl border border-border-subtle/60 bg-background/60 p-5 shadow-[0_12px_28px_rgba(5,5,16,0.45)]">
       <header className="mb-3 flex flex-col gap-1">
         <h3 className="text-lg font-semibold text-text-primary">{section.title}</h3>
         <p className="text-sm text-text-muted">{section.summary}</p>

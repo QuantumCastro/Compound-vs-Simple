@@ -34,10 +34,12 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
+        mono: ["var(--font-mono)", ...defaultTheme.fontFamily.mono],
       },
       boxShadow: {
         "panel-soft":
           "0px 5px 15px rgba(18, 10, 34, 0.45), inset 0 1px 0 rgba(204, 180, 255, 0.12)",
+        "neon-strong": "0 0 24px rgba(59,130,246,0.4), 0 0 48px rgba(239,68,68,0.35)",
       },
       keyframes: {
         "draw-line": {

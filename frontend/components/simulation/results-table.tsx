@@ -37,7 +37,8 @@ export function ResultsTable({ rows, currency, locale, labels }: ResultsTablePro
   const remaining = Math.min(PAGE_SIZE, rows.length - visibleCount);
 
   return (
-    <section className="rounded-2xl border border-border-subtle bg-background-raised/60 p-6 shadow-panel-soft backdrop-blur">
+    <section className="glass-panel relative overflow-hidden rounded-2xl p-6">
+      <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-accent-compound via-accent-highlight to-accent-simple" />
       <header className="mb-4 flex flex-col gap-1">
         <h3 className="text-lg font-semibold text-text-primary">{labels.title}</h3>
         <p className="text-sm text-text-muted">{labels.description}</p>
@@ -45,7 +46,7 @@ export function ResultsTable({ rows, currency, locale, labels }: ResultsTablePro
 
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-border-subtle/60 text-left text-sm" aria-label={labels.ariaLabel}>
-          <thead className="text-xs uppercase tracking-wide text-text-muted">
+          <thead className="bg-background/60 text-xs uppercase tracking-wide text-text-muted">
             <tr>
               <th className="px-3 py-2">{labels.columnPeriod}</th>
               <th className="px-3 py-2">{labels.columnSimpleTotal}</th>
@@ -60,7 +61,7 @@ export function ResultsTable({ rows, currency, locale, labels }: ResultsTablePro
             {visibleRows.map((row) => {
               const gap = clampToZeroDisplay(row.compound.total - row.simple.total);
               return (
-                <tr key={row.periodIndex}>
+                <tr key={row.periodIndex} className="transition hover:bg-accent-compound/5">
                   <td className="px-3 py-2 font-medium text-text-primary">
                     {formatNumber(row.periodIndex, locale)}
                   </td>
@@ -73,7 +74,7 @@ export function ResultsTable({ rows, currency, locale, labels }: ResultsTablePro
                   <td className="px-3 py-2">
                     {formatCurrency(row.contributionApplied, currency, locale)}
                   </td>
-                  <td className="px-3 py-2">{formatCurrency(gap, currency, locale)}</td>
+                  <td className="px-3 py-2 text-accent-highlight">{formatCurrency(gap, currency, locale)}</td>
                 </tr>
               );
             })}
@@ -86,7 +87,7 @@ export function ResultsTable({ rows, currency, locale, labels }: ResultsTablePro
           <button
             type="button"
             onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
-            className="rounded-full border border-border-subtle px-4 py-2 text-xs font-medium text-text-secondary transition hover:border-accent-highlight hover:text-text-primary"
+            className="rounded-full border border-accent-simple/40 bg-background/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-text-primary shadow-[0_0_12px_rgba(59,130,246,0.25)] transition hover:border-accent-compound hover:text-accent-compound"
           >
             {labels.showMore.replace("{{count}}", remaining.toString())}
           </button>
@@ -95,7 +96,7 @@ export function ResultsTable({ rows, currency, locale, labels }: ResultsTablePro
           <button
             type="button"
             onClick={() => setVisibleCount(PAGE_SIZE)}
-            className="rounded-full border border-border-subtle px-4 py-2 text-xs font-medium text-text-secondary transition hover:border-accent-highlight hover:text-text-primary"
+            className="rounded-full border border-accent-simple/40 bg-background/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-text-primary shadow-[0_0_12px_rgba(59,130,246,0.25)] transition hover:border-accent-compound hover:text-accent-compound"
           >
             {labels.showLess}
           </button>

@@ -39,7 +39,8 @@ export function GrowthCharts({
   const gapMetrics = useMemo(() => computeGapMetrics(gapData), [gapData]);
 
   return (
-    <section className="flex flex-col gap-6 rounded-2xl border border-border-subtle bg-background-raised/70 p-6 shadow-panel-soft backdrop-blur">
+    <section className="glass-panel relative flex flex-col gap-6 overflow-hidden rounded-2xl p-6">
+      <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-accent-compound via-accent-highlight to-accent-simple" />
       <ChartHeader title={labels.comparisonTitle} description={labels.comparisonDescription} />
       <ComparisonChart
         data={comparisonMetrics.points}
@@ -50,7 +51,7 @@ export function GrowthCharts({
         prefersReducedMotion={prefersReducedMotion}
       />
 
-      <div className="h-px w-full bg-border-subtle/60" />
+      <div className="neon-divider" />
 
       <ChartHeader title={labels.gapTitle} description={labels.gapDescription} />
       <GapChart
@@ -61,6 +62,13 @@ export function GrowthCharts({
         legend={labels.gapLegend}
         prefersReducedMotion={prefersReducedMotion}
       />
+
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-3 top-3 h-3 w-3 border-l border-t border-accent-compound/60" />
+        <div className="absolute right-3 top-3 h-3 w-3 border-r border-t border-accent-compound/60" />
+        <div className="absolute left-3 bottom-3 h-3 w-3 border-l border-b border-accent-simple/60" />
+        <div className="absolute right-3 bottom-3 h-3 w-3 border-r border-b border-accent-simple/60" />
+      </div>
     </section>
   );
 }
@@ -95,30 +103,34 @@ function ComparisonChart({ data, maxValue, currency, locale, labels, prefersRedu
   const ticks = getAxisTicks(data);
 
   return (
-    <figure className="relative flex flex-col gap-4">
+    <figure className="relative flex flex-col gap-4 overflow-hidden rounded-xl border border-border-subtle/70 bg-background/50 p-4 shadow-[0_12px_28px_rgba(5,5,16,0.5)]">
+      <div className="absolute right-4 top-4 z-10 flex flex-wrap gap-4 text-xs font-mono">
+        <LegendChip color="bg-accent-compound/80" shadow="shadow-[0_0_10px_rgba(239,68,68,0.5)]" label={labels.legendCompound} />
+        <LegendChip color="bg-accent-simple/80" shadow="shadow-[0_0_10px_rgba(59,130,246,0.5)]" label={labels.legendSimple} />
+      </div>
       <div className="overflow-x-auto">
         <svg
           role="img"
           aria-label={labels.legendCompound}
           viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
-          className="min-w-[640px] w-full"
+          className="min-w-[720px] w-full"
         >
           <defs>
             <linearGradient id="compoundGradient" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="#38BDF8" stopOpacity="0" />
+              <stop offset="0%" stopColor="#ef4444" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#ef4444" stopOpacity="0" />
             </linearGradient>
             <linearGradient id="simpleGradient" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stopColor="#34D399" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="#34D399" stopOpacity="0" />
+              <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.35" />
+              <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
             </linearGradient>
           </defs>
           <Axis maxValue={maxValue} ticks={ticks} currency={currency} locale={locale} />
           <path
             d={buildLinePath(data, (point) => point.compound, maxValue)}
             fill="none"
-            stroke="#38BDF8"
-            strokeWidth={1}
+            stroke="#fca5a5"
+            strokeWidth={2.5}
             pathLength={1}
             className={!prefersReducedMotion ? "motion-safe:animate-draw-line" : undefined}
             style={!prefersReducedMotion ? { strokeDasharray: 1, strokeDashoffset: 1 } : undefined}
@@ -131,8 +143,8 @@ function ComparisonChart({ data, maxValue, currency, locale, labels, prefersRedu
           <path
             d={buildLinePath(data, (point) => point.simple, maxValue)}
             fill="none"
-            stroke="#34D399"
-            strokeWidth={1}
+            stroke="#93c5fd"
+            strokeWidth={2}
             pathLength={1}
             className={!prefersReducedMotion ? "motion-safe:animate-draw-line" : undefined}
             style={!prefersReducedMotion ? { strokeDasharray: 1, strokeDashoffset: 1, animationDelay: "0.2s" } : undefined}
@@ -146,8 +158,8 @@ function ComparisonChart({ data, maxValue, currency, locale, labels, prefersRedu
         </svg>
       </div>
       <figcaption className="flex flex-wrap gap-4 text-xs text-text-muted">
-        <LegendDot color="#34D399" label={labels.legendSimple} />
-        <LegendDot color="#38BDF8" label={labels.legendCompound} />
+        <LegendDot color="#3b82f6" label={labels.legendSimple} />
+        <LegendDot color="#ef4444" label={labels.legendCompound} />
       </figcaption>
     </figure>
   );
@@ -166,18 +178,21 @@ function GapChart({ data, maxValue, currency, locale, legend, prefersReducedMoti
   const ticks = getAxisTicks(data);
 
   return (
-    <figure className="flex flex-col gap-4">
+    <figure className="relative flex flex-col gap-4 overflow-hidden rounded-xl border border-border-subtle/70 bg-background/50 p-4 shadow-[0_12px_28px_rgba(5,5,16,0.5)]">
+      <div className="absolute right-4 top-4 z-10 text-xs font-mono text-text-muted">
+        <LegendChip color="bg-accent-highlight/80" shadow="shadow-[0_0_10px_rgba(168,85,247,0.5)]" label={legend} />
+      </div>
       <div className="overflow-x-auto">
         <svg
           role="img"
           aria-label={legend}
           viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
-          className="min-w-[640px] w-full"
+          className="min-w-[720px] w-full"
         >
         <defs>
           <linearGradient id="gapGradient" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stopColor="#FACC15" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="#FACC15" stopOpacity="0" />
+            <stop offset="0%" stopColor="#a855f7" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
           </linearGradient>
         </defs>
         <Axis maxValue={maxValue} ticks={ticks} currency={currency} locale={locale} />
@@ -189,8 +204,8 @@ function GapChart({ data, maxValue, currency, locale, legend, prefersReducedMoti
         <path
           d={buildLinePathGap(data, maxValue)}
           fill="none"
-          stroke="#FACC15"
-          strokeWidth={1}
+          stroke="#c084fc"
+          strokeWidth={2}
           pathLength={1}
           className={!prefersReducedMotion ? "motion-safe:animate-draw-line" : undefined}
           style={!prefersReducedMotion ? { strokeDasharray: 1, strokeDashoffset: 1 } : undefined}
@@ -218,16 +233,16 @@ function Axis({ maxValue, ticks, currency, locale }: AxisProps) {
         y1={VIEWBOX_HEIGHT - PADDING_Y}
         x2={VIEWBOX_WIDTH - PADDING_X}
         y2={VIEWBOX_HEIGHT - PADDING_Y}
-        stroke="#334266"
-        strokeWidth={0.5}
+        stroke="#16233f"
+        strokeWidth={0.8}
       />
       <line
         x1={PADDING_X}
         y1={PADDING_Y}
         x2={PADDING_X}
         y2={VIEWBOX_HEIGHT - PADDING_Y}
-        stroke="#334266"
-        strokeWidth={0.5}
+        stroke="#16233f"
+        strokeWidth={0.8}
       />
       {ticks.map((tick) => {
         const position = getXPosition(tick, ticks[ticks.length - 1] || 1);
@@ -261,6 +276,15 @@ function LegendDot({ color, label }: { color: string; label: string }) {
     <span className="inline-flex items-center gap-2">
       <span className="h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
       <span>{label}</span>
+    </span>
+  );
+}
+
+function LegendChip({ color, shadow, label }: { color: string; shadow: string; label: string }) {
+  return (
+    <span className="inline-flex items-center gap-2">
+      <span className={`h-3 w-3 rounded-sm ${color} ${shadow} border border-white/10`} />
+      <span className="text-text-muted">{label}</span>
     </span>
   );
 }
