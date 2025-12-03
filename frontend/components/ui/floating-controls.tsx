@@ -1,5 +1,6 @@
 "use client";
 
+import type { MouseEvent } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { useTheme } from "@/lib/theme/context";
 
@@ -60,10 +61,14 @@ function ToggleButton({ label, ariaLabel, onClick, ariaPressed }: ToggleButtonPr
 }
 
 function StartButton({ label, ariaLabel }: { label: string; ariaLabel: string }) {
-  const scrollToSimulation = () => {
+  const scrollToSimulation = (event: MouseEvent<HTMLButtonElement>) => {
     const target = document.getElementById("simulation");
+    const triggerHeight = event.currentTarget.getBoundingClientRect().height;
+    const offset = triggerHeight + 8; // leave room for the floating controls
     if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      const targetTop = target.getBoundingClientRect().top + window.scrollY;
+      const top = Math.max(targetTop - offset, 0);
+      window.scrollTo({ top, behavior: "smooth" });
       return;
     }
     window.location.hash = "#simulation";
@@ -74,7 +79,7 @@ function StartButton({ label, ariaLabel }: { label: string; ariaLabel: string })
       type="button"
       onClick={scrollToSimulation}
       aria-label={ariaLabel}
-      className="inline-flex items-center gap-3 rounded-full border border-accent-compound/60 bg-gradient-to-r from-background/80 via-background-muted/80 to-background-raised/80 px-6 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-text-primary shadow-[0_0_22px_rgba(239,68,68,0.35)] backdrop-blur transition hover:border-accent-simple hover:text-accent-simple"
+      className="inline-flex items-center justify-center gap-2 rounded-full border border-accent-compound/60 bg-gradient-to-r from-background/80 via-background-muted/80 to-background-raised/80 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-text-primary shadow-[0_0_18px_rgba(239,68,68,0.35)] backdrop-blur transition hover:border-accent-simple hover:text-accent-simple"
     >
       <span className="h-2 w-2 rounded-full bg-accent-simple shadow-[0_0_12px_rgba(59,130,246,0.6)]" />
       {label}
