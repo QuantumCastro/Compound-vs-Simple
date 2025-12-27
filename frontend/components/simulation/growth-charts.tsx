@@ -113,7 +113,7 @@ function ComparisonChart({ data, maxValue, currency, locale, labels, prefersRedu
           role="img"
           aria-label={labels.legendCompound}
           viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
-          className="min-w-[720px] w-full"
+          className="w-full min-w-[360px] sm:min-w-[480px] lg:min-w-[720px]"
         >
           <defs>
             <linearGradient id="compoundGradient" x1="0" x2="0" y1="0" y2="1">
@@ -187,7 +187,7 @@ function GapChart({ data, maxValue, currency, locale, legend, prefersReducedMoti
           role="img"
           aria-label={legend}
           viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
-          className="min-w-[720px] w-full"
+          className="w-full min-w-[360px] sm:min-w-[480px] lg:min-w-[720px]"
         >
         <defs>
           <linearGradient id="gapGradient" x1="0" x2="0" y1="0" y2="1">

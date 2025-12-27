@@ -60,9 +60,18 @@ code {
   @apply rounded bg-background-muted px-1.5 py-0.5 text-xs text-accent-compound;
 }
 
+img,
+picture,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
 *,
 *::before,
 *::after {
+  box-sizing: border-box;
   @apply border-border-subtle;
 }
 

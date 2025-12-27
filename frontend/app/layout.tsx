@@ -1,5 +1,5 @@
 import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Providers } from "./providers";
 import { CyberBackground } from "@/components/ui/cyber-background";
@@ -19,6 +19,11 @@ export const metadata: Metadata = {
   title: "Interest Growth Explorer",
   description:
     "Interactive static experience to understand differences between simple and compound interest with educational guidance.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 type RootLayoutProps = {
@@ -43,4 +48,3 @@ export default function RootLayout({ children }: RootLayoutProps) {
     </html>
   );
 }
-

@@ -173,8 +173,8 @@ export function SimulationShell() {
 
   return (
     <div className="flex flex-col gap-8">
-      <div className="grid gap-6 xl:grid-cols-12">
-        <div className="flex flex-col gap-4 xl:col-span-4">
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">
+        <div className="flex min-w-0 flex-col gap-4 xl:col-span-4">
           <SimulationForm
             values={values}
             errors={displayErrors}
@@ -187,32 +187,40 @@ export function SimulationShell() {
 
           <div className="glass-panel relative overflow-hidden rounded-2xl p-4">
             <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-accent-compound via-accent-highlight to-accent-simple" />
-            <div className="flex items-center justify-between gap-4">
-              <div className="space-y-1">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="min-w-0 space-y-1">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-text-muted">
                   {dictionary.results.summary.finalCompound}
                 </p>
-                <p className="text-2xl font-semibold text-text-primary">{projectedTotal}</p>
+                <div className="overflow-x-auto">
+                  <p className="whitespace-nowrap text-2xl font-semibold text-text-primary">{projectedTotal}</p>
+                </div>
                 <p className="text-xs text-text-muted">{dictionary.hero.subtitle}</p>
               </div>
               <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-accent-simple/40 bg-background shadow-[0_0_14px_rgba(59,130,246,0.25)]">
                 <RefreshCw size={18} className="text-accent-simple animate-spin-slow" aria-hidden />
               </div>
             </div>
-            <div className="mt-3 grid grid-cols-2 gap-3 text-xs">
-              <div className="rounded-xl border border-accent-simple/20 bg-background/60 p-3">
+            <div className="mt-3 grid gap-3 text-xs sm:grid-cols-2">
+              <div className="min-w-0 rounded-xl border border-accent-simple/20 bg-background/60 p-3">
                 <p className="text-text-muted">{dictionary.results.summary.difference}</p>
-                <p className="text-accent-highlight text-sm font-semibold">{projectedGap}</p>
+                <div className="overflow-x-auto">
+                  <p className="whitespace-nowrap text-sm font-semibold text-accent-highlight">{projectedGap}</p>
+                </div>
               </div>
-              <div className="rounded-xl border border-accent-compound/20 bg-background/60 p-3">
+              <div className="min-w-0 rounded-xl border border-accent-compound/20 bg-background/60 p-3">
                 <p className="text-text-muted">{dictionary.results.summary.contributions}</p>
-                <p className="text-text-primary text-sm font-semibold">{projectedContributions}</p>
+                <div className="overflow-x-auto">
+                  <p className="whitespace-nowrap text-sm font-semibold text-text-primary">
+                    {projectedContributions}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 xl:col-span-8">
+        <div className="flex min-w-0 flex-col gap-6 xl:col-span-8">
           {resultStateMessage ? (
             <div className="glass-panel flex items-center gap-3 rounded-2xl border-accent-danger/50 bg-accent-danger/10 px-4 py-3 text-sm text-text-primary">
               <span className="h-2 w-2 rounded-full bg-accent-danger shadow-[0_0_10px_rgba(248,113,113,0.7)]" />

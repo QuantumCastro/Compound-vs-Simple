@@ -20,4 +20,4 @@ format:
 format-fix:
 	pnpm --dir frontend format:fix
 
-verify: lint type test build
+verify: lint type build

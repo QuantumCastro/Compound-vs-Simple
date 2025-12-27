@@ -120,7 +120,7 @@ export function SimulationForm({
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-simple/60 to-transparent opacity-70" />
               <label
                 htmlFor={inputId}
-                className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-text-muted"
+                className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-text-muted"
               >
                 <Zap size={12} className="text-accent-compound" aria-hidden />
                 {fieldLabels[fieldName]}
@@ -155,8 +155,8 @@ export function SimulationForm({
         })}
 
         <div className="glass-panel md:col-span-2 rounded-xl p-4">
-          <div className="flex items-center justify-between gap-4">
-            <div>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
               <p className="text-sm font-medium text-text-secondary">
                 {formTexts.fields.contributionsEnabled.label}
               </p>

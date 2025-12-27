@@ -33,7 +33,7 @@ export function EducationalContent() {
         <p className="text-sm text-text-muted">{dictionary.education.header.subtitle}</p>
       </header>
 
-      <div className="custom-scrollbar flex max-h-[420px] flex-col gap-6 overflow-y-auto pr-1">
+      <div className="custom-scrollbar flex max-h-[55vh] flex-col gap-6 overflow-y-auto pr-1 sm:max-h-[420px]">
         {sections.map((section) => (
           <EducationSection key={section.id} section={section} />
         ))}
@@ -49,7 +49,7 @@ function EducationSection({ section }: { section: EducationSectionContent }) {
         <p className="text-sm text-text-muted">{section.summary}</p>
       </header>
 
-      <div className="flex flex-col gap-3 text-sm text-text-secondary">
+      <div className="flex flex-col gap-3 break-words text-sm text-text-secondary">
         {section.points ? (
           <ul className="list-disc space-y-2 pl-5">
             {section.points.map((point) => (

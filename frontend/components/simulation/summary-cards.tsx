@@ -25,18 +25,18 @@ export function SummaryCards({ metrics, title, subtitle }: SummaryCardsProps) {
         <h3 className="text-lg font-semibold text-text-primary">{title}</h3>
         <p className="text-sm text-text-muted">{subtitle}</p>
       </header>
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
         {metrics.map((metric, index) => {
           const accent = accentPalette[index % accentPalette.length];
           const Icon = icons[index % icons.length];
           return (
             <article
               key={metric.id}
-              className="relative overflow-hidden rounded-xl border border-border-subtle/70 bg-background/70 p-4 shadow-[0_14px_30px_rgba(5,5,16,0.45)]"
+              className="relative min-w-0 overflow-hidden rounded-xl border border-border-subtle/70 bg-background/70 p-4 shadow-[0_14px_30px_rgba(5,5,16,0.45)]"
               >
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-simple/60 to-transparent" />
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-text-muted">
+              <div className="flex items-start justify-between gap-3">
+                <p className="min-w-0 break-words text-[11px] font-semibold uppercase leading-snug tracking-[0.2em] text-text-muted">
                   {metric.label}
                 </p>
                 <span className={`rounded-md border ${accent.border} bg-background/60 p-2`}>
