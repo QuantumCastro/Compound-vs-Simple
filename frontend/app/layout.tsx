@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   title: "Interest Growth Explorer",
   description:
     "Interactive static experience to understand differences between simple and compound interest with educational guidance.",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export const viewport: Viewport = {

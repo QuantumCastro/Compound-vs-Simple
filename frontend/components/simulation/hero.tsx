@@ -1,7 +1,7 @@
 "use client";
 
 import { useI18n } from "@/lib/i18n/context";
-import { Cpu, Lock, Sparkles } from "lucide-react";
+import { Lock, Sparkles } from "lucide-react";
 import type { ReactNode } from "react";
 
 export function HeroSection() {
@@ -18,7 +18,7 @@ export function HeroSection() {
           <div className="flex items-start gap-4">
             <div className="relative">
               <div className="grid h-14 w-14 place-items-center rounded-2xl border border-accent-simple/40 bg-background shadow-[0_0_24px_rgba(59,130,246,0.35)]">
-                <Cpu className="text-accent-simple" size={24} />
+                <img src="/logo.svg" alt={dictionary.app.name} className="h-6 w-6" />
               </div>
               <span className="absolute -left-1 -top-1 h-3 w-3 rounded-full bg-accent-compound shadow-[0_0_14px_rgba(239,68,68,0.8)]" />
             </div>
