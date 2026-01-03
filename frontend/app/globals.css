@@ -18,22 +18,6 @@
   --color-border-strong: 59 130 246;
 }
 
-[data-theme="light"] {
-  color-scheme: light;
-  --color-background: 240 245 255;
-  --color-background-raised: 223 232 255;
-  --color-background-muted: 205 220 255;
-  --color-text-primary: 17 24 39;
-  --color-text-secondary: 55 65 81;
-  --color-text-muted: 100 116 139;
-  --color-accent-simple: 59 130 246;
-  --color-accent-compound: 239 68 68;
-  --color-accent-highlight: 168 85 247;
-  --color-accent-danger: 220 38 38;
-  --color-border-subtle: 199 210 254;
-  --color-border-strong: 59 130 246;
-}
-
 html {
   scroll-behavior: smooth;
 }

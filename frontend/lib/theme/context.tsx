@@ -41,15 +41,9 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     if (typeof window === "undefined") {
       return;
     }
-
-    const stored = window.localStorage.getItem(STORAGE_KEY) as ThemeMode | null;
-    if (stored === "light" || stored === "dark") {
-      setThemeState(stored);
-      applyTheme(stored);
-      return;
-    }
-
+    setThemeState(DEFAULT_THEME);
     applyTheme(DEFAULT_THEME);
+    window.localStorage.setItem(STORAGE_KEY, DEFAULT_THEME);
   }, [applyTheme]);
 
   useEffect(() => {
@@ -60,12 +54,12 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     window.localStorage.setItem(STORAGE_KEY, theme);
   }, [theme, applyTheme]);
 
-  const setTheme = useCallback((next: ThemeMode) => {
-    setThemeState(next);
+  const setTheme = useCallback((_next: ThemeMode) => {
+    setThemeState(DEFAULT_THEME);
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setThemeState((current) => (current === "dark" ? "light" : "dark"));
+    setThemeState(DEFAULT_THEME);
   }, []);
 
   const value = useMemo(
